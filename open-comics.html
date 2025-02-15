@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script>
+      /* Bookmarklet to open all of my comics, includes date strings for gocomics ones
+   And opens saturday/sunday comics on their appropriate days
+   To use: put as the URL in a bookmark*/
+      function openComics() {
+        var dateString = new Date().toISOString().slice(0,10).replaceAll('-', '/');
+        const dateComics = ['garfield','calvinandhobbes','getfuzzy','peanuts','nonsequitur','bc'];
+        for(comic in dateComics) {
+          window.open(`https://www.gocomics.com/${dateComics[comic]}/${dateString}`, '_blank');
+        }
+        const otherComicUrls = [
+          'https://cad-comic.com/',
+          'https://penny-arcade.com/',
+          'https://explosm.net/',
+          'https://xkcd.com/',
+          'https://questionablecontent.net/',
+          'http://www.webtoons.com/en/slice-of-life/my-giant-nerd-boyfriend/list?title_no=958',
+          'https://www.webtoons.com/en/canvas/where-the-flowers-withered/list?title_no=970318',
+          'https://www.webtoons.com/en/canvas/erma/list?title_no=170650',
+          'https://smbc-comics.com/'
+        ];
+        for(comic in otherComicUrls){
+          window.open(otherComicUrls[comic], '_blank');
+        }
+        switch (new Date().getDay()) {
+        case 0: /* Sunday */
+          window.open('https://www.oglaf.com', '_blank');
+          break;
+        case 6: /* Saturday */
+          window.open('https://www.c.urvy.org', '_blank');
+          break;
+        }
+        window.close();
+      };
+
+      window.onload = (event) => {
+        openComics();
+      };
+
+    </script>
+  </head>
+  <body>
+    <p>Opening comics....</p>
+  </body>
+</html>
